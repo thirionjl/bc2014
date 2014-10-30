@@ -1,11 +1,5 @@
 package com.sopra.battlecode.bc2014;
 
-import static java.util.Comparator.comparing;
-import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -17,8 +11,14 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.Validate;
 
-import com.google.common.base.Splitter;
 import com.sopra.battlecode.bc2014.cipher.CipherText;
+
+import static com.sopra.battlecode.bc2014.output.OutputUtils.printout;
+import static java.util.Comparator.comparing;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 public class CodeBreaker2 {
 
@@ -167,13 +167,5 @@ public class CodeBreaker2 {
 
 		printout("=== Step 5: Decode ===");
 		printout(new Decoder(text.getCharacterCodes(), new int[] { 1, 0, 19, 2, 14, 3, 4 }).decode());
-	}
-
-	private static void printout(Object o) {
-		String s = o.toString();
-		if (s.length() > 4000) {
-			s = s.substring(0, 4000);
-		}
-		System.out.println(String.join("\n", Splitter.fixedLength(150).split(s)));
 	}
 }

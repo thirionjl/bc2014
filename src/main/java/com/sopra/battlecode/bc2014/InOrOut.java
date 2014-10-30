@@ -3,24 +3,12 @@ package com.sopra.battlecode.bc2014;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sopra.battlecode.bc2014.geometry.Point;
+
 // To know if a point (a,b) is inside a polygon, draw the horizontal line passing through that point (of equation: y = b)
 // and count how often it intersects the polygon sides but count only intersections that happen on the left (or right) side of the point (Area where x < a)
 // If this intersection count is odd (1,3,5...) the point is inside the polygon, else the point is outside
 public class InOrOut {
-
-	static class Point {
-		double x, y;
-
-		Point(double x, double y) {
-			this.x = x;
-			this.y = y;
-		}
-
-		@Override
-		public String toString() {
-			return "(" + x + ", " + y + ")";
-		}
-	}
 
 	static class Segment {
 		Point bottom, up;
