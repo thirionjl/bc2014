@@ -3,7 +3,6 @@ package com.sopra.battlecode.bc2014.cipher;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
@@ -11,14 +10,14 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.sopra.battlecode.bc2014.CodeBreaker2;
+import com.sopra.battlecode.bc2014.resources.ResourceUtils;
 
 public class CipherText {
 	private static final String WORD_SEPARATORS = "[^a-zA-Z]";
 	final Path pathToCipheredText;
 
 	public CipherText(String classpathLocation) {
-		this.pathToCipheredText = getPath(classpathLocation);
+		this.pathToCipheredText = ResourceUtils.getPath(classpathLocation);
 	}
 
 	public Stream<String> getLines() throws Exception {
@@ -38,12 +37,6 @@ public class CipherText {
 		return getCharacters(x -> true).mapToInt(c -> (int) c.charValue());
 	}
 
-	private static Path getPath(String classpathLocation) {
-		try {
-			return Paths.get(CodeBreaker2.class.getResource(classpathLocation).toURI());
-		} catch (Exception ex) {
-			throw new RuntimeException(ex);
-		}
-	}
+	
 
 }

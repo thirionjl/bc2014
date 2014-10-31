@@ -44,10 +44,12 @@ public class SopraPhone {
 		void toStringRec(String prefix, boolean isTail, PrintWriter writer) {
 			writer.println(prefix + (isTail ? "└── " : "├── ") + c);
 			for (int i = 0; i < subNodes.size() - 1; i++) {
-				subNodes.get(i).toStringRec(prefix + (isTail ? "    " : "│   "), false, writer);
+				subNodes.get(i).toStringRec(
+						prefix + (isTail ? "    " : "│   "), false, writer);
 			}
 			if (subNodes.size() > 0) {
-				subNodes.get(subNodes.size() - 1).toStringRec(prefix + (isTail ? "    " : "│   "), true, writer);
+				subNodes.get(subNodes.size() - 1).toStringRec(
+						prefix + (isTail ? "    " : "│   "), true, writer);
 			}
 		}
 	}
@@ -60,7 +62,8 @@ public class SopraPhone {
 	}
 
 	void attachSubnodes(IndexNode parentNode, List<String> phoneNumbers) {
-		Map<Character, List<String>> phoneNumbersByFirstDigit = phoneNumbers.stream().filter(StringUtils::isNotEmpty)
+		Map<Character, List<String>> phoneNumbersByFirstDigit = phoneNumbers
+				.stream().filter(StringUtils::isNotEmpty)
 				.collect(groupingBy(s -> s.charAt(0)));
 
 		phoneNumbersByFirstDigit.entrySet().stream().forEach(e -> {
@@ -79,7 +82,7 @@ public class SopraPhone {
 	}
 
 	int count() {
-		return this.indexRootNode.count();
+		return this.indexRootNode.count() - 1;
 	}
 
 	@Override
@@ -88,9 +91,11 @@ public class SopraPhone {
 	}
 
 	public static void main(String[] args) {
-		SopraPhone phone = new SopraPhone("0412578440", "0412199803", "0468892011", "112", "15");
+		SopraPhone phone = new SopraPhone("0412578440", "0412199803",
+				"0468892011", "112", "15");
 
-		System.out.println(String.format("There are %d nodes in index", phone.count()));
+		System.out.println(String.format("There are %d nodes in index",
+				phone.count()));
 		System.out.println("Structure is:");
 		System.out.println(phone);
 
